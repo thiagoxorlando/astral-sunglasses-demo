@@ -44,7 +44,7 @@ const benefits = [
 
 export default function FreteSection() {
   return (
-    <section id="frete" className="py-20 bg-void-card overflow-hidden">
+    <section id="frete" className="py-24 bg-void-card overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text side */}
@@ -54,10 +54,28 @@ export default function FreteSection() {
               FRETE PARA TODO<br />
               <span className="gradient-text">O BRASIL</span>
             </h2>
-            <p className="text-white/50 text-base leading-relaxed mb-10">
+            <p className="text-white/50 text-base leading-relaxed mb-6">
               De Búzios para qualquer cidade do país. Receba seu Astral onde estiver —
               com segurança, agilidade e a embalagem premium que você merece.
             </p>
+
+            {/* Reinforcement badge */}
+            <div
+              className="inline-flex items-center gap-3 px-5 py-3 rounded-xl mb-10"
+              style={{
+                background: "rgba(245,124,0,0.07)",
+                border: "1px solid rgba(245,124,0,0.2)",
+              }}
+            >
+              <svg width="20" height="20" fill="none" stroke="#F57C00" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                <rect x="1" y="3" width="15" height="13" rx="1" />
+                <path d="M16 8h4l3 3v5h-7V8z" />
+                <circle cx="5.5" cy="18.5" r="2.5" />
+                <circle cx="18.5" cy="18.5" r="2.5" />
+              </svg>
+              <span className="text-brand font-bold text-sm">Enviamos para todo o Brasil</span>
+              <span className="text-white/30 text-xs">— 27 estados cobertos</span>
+            </div>
 
             {/* Benefits grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
