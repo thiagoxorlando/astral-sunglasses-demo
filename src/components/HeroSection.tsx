@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function HeroSection() {
   return (
     <section
@@ -140,180 +142,58 @@ export default function HeroSection() {
           <div className="order-1 lg:order-2 flex items-stretch">
             <div className="relative w-full flex flex-col gap-3 pt-20 pb-8">
 
-              {/* Main lifestyle "photo" — beach sunset product shot */}
+              {/* Main photo — Astral store with ASTRAL sign prominent */}
               <div
                 className="relative flex-1 rounded-2xl overflow-hidden"
-                style={{
-                  minHeight: "360px",
-                  background: `
-                    linear-gradient(to bottom,
-                      #06090f 0%,
-                      #0a1020 18%,
-                      #0f1e38 35%,
-                      #1a2d4a 48%,
-                      #3d2410 62%,
-                      #7a3c08 72%,
-                      #c96010 82%,
-                      #e8820a 88%,
-                      #3d1a00 95%,
-                      #1a0a00 100%
-                    )
-                  `,
-                  border: "1px solid rgba(245,124,0,0.12)",
-                }}
+                style={{ minHeight: "360px", border: "1px solid rgba(200,176,138,0.12)" }}
               >
-                {/* Sun disc */}
-                <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    width: "140px",
-                    height: "140px",
-                    bottom: "28%",
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                    background: "radial-gradient(circle, rgba(255,200,80,0.55) 0%, rgba(230,130,20,0.3) 40%, transparent 70%)",
-                    borderRadius: "50%",
-                  }}
+                <Image
+                  src="/store-sign.jpg"
+                  alt="Astral Sunglasses — Rua das Pedras, Búzios"
+                  fill
+                  priority
+                  quality={92}
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  style={{ objectFit: "cover", objectPosition: "center 18%" }}
                 />
 
-                {/* Ocean reflection band */}
+                {/* Minimal left fade — blends panel edge into layout */}
                 <div
-                  className="absolute pointer-events-none"
-                  style={{
-                    bottom: "25%",
-                    left: 0,
-                    right: 0,
-                    height: "2px",
-                    background: "linear-gradient(90deg, transparent 0%, rgba(255,200,100,0.6) 30%, rgba(255,220,120,0.8) 50%, rgba(255,200,100,0.6) 70%, transparent 100%)",
-                  }}
+                  className="absolute inset-y-0 left-0 w-1/5 pointer-events-none"
+                  style={{ background: "linear-gradient(to right, rgba(10,8,5,0.38), transparent)" }}
+                />
+                {/* Bottom vignette — just enough for the location label */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
+                  style={{ background: "linear-gradient(to top, rgba(8,6,4,0.68) 0%, transparent 100%)" }}
                 />
 
-                {/* Water ripple lines */}
-                {[22, 20, 18, 16].map((pct, i) => (
-                  <div
-                    key={i}
-                    className="absolute pointer-events-none"
+                {/* Campaign label */}
+                <div className="absolute top-5 left-5 right-5 flex items-start justify-between z-10">
+                  <p
+                    className="text-[10px] tracking-[0.4em] font-semibold px-3 py-1.5 rounded-full"
                     style={{
-                      bottom: `${pct}%`,
-                      left: "10%",
-                      right: "10%",
-                      height: "1px",
-                      background: `rgba(255,180,80,${0.08 - i * 0.015})`,
-                    }}
-                  />
-                ))}
-
-                {/* Beach silhouette */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 pointer-events-none"
-                  style={{ height: "25%" }}
-                >
-                  <svg viewBox="0 0 800 200" preserveAspectRatio="none" className="w-full h-full">
-                    <path
-                      d="M0 200 L0 140 Q100 120 200 135 Q300 150 400 125 Q500 100 600 120 Q700 140 800 110 L800 200 Z"
-                      fill="#0a0604"
-                    />
-                    {/* Rocks */}
-                    <ellipse cx="120" cy="138" rx="30" ry="12" fill="#0d0806" />
-                    <ellipse cx="640" cy="118" rx="22" ry="9" fill="#0d0806" />
-                    {/* Palm silhouette */}
-                    <line x1="680" y1="165" x2="695" y2="90" stroke="#080503" strokeWidth="4" />
-                    <path d="M695 90 Q720 75 745 80 Q730 85 720 95" fill="#080503" />
-                    <path d="M695 90 Q670 70 648 78 Q660 85 672 95" fill="#080503" />
-                    <path d="M695 90 Q715 60 740 55 Q725 68 712 80" fill="#080503" />
-                    <path d="M695 90 Q665 55 644 53 Q658 67 671 80" fill="#080503" />
-                  </svg>
-                </div>
-
-                {/* Product floating in golden hour light */}
-                <div
-                  className="absolute inset-0 flex items-center justify-center float-animation pointer-events-none"
-                  style={{ paddingBottom: "22%" }}
-                >
-                  <div className="relative">
-                    {/* Glow halo behind product */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: "-30px",
-                        background: "radial-gradient(circle, rgba(245,181,65,0.2) 0%, transparent 65%)",
-                        borderRadius: "50%",
-                      }}
-                    />
-                    <svg
-                      viewBox="0 0 380 170"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      style={{
-                        width: "clamp(220px, 50vw, 340px)",
-                        filter: "drop-shadow(0 8px 32px rgba(200,100,0,0.5)) drop-shadow(0 0 20px rgba(245,181,65,0.3))",
-                      }}
-                    >
-                      {/* Left lens */}
-                      <rect x="8" y="28" width="155" height="108" rx="18" fill="url(#hl-frame)" />
-                      <rect x="12" y="32" width="147" height="100" rx="15" fill="url(#hl-lens)" />
-                      {/* Left lens sheen (golden hour) */}
-                      <ellipse cx="52" cy="58" rx="32" ry="15" fill="rgba(255,200,100,0.12)" />
-                      <path d="M20 45 Q85 35 155 50" stroke="rgba(255,220,120,0.08)" strokeWidth="1" fill="none" />
-
-                      {/* Right lens */}
-                      <rect x="217" y="28" width="155" height="108" rx="18" fill="url(#hl-frame)" />
-                      <rect x="221" y="32" width="147" height="100" rx="15" fill="url(#hl-lens)" />
-                      <ellipse cx="261" cy="58" rx="32" ry="15" fill="rgba(255,200,100,0.12)" />
-
-                      {/* Bridge */}
-                      <path d="M163 82 Q190 68 217 82" stroke="url(#hl-bridge)" strokeWidth="5" strokeLinecap="round" fill="none" />
-
-                      {/* Temple arms */}
-                      <path d="M8 82 L-20 88" stroke="url(#hl-frame-stroke)" strokeWidth="5" strokeLinecap="round" />
-                      <path d="M372 82 L400 88" stroke="url(#hl-frame-stroke)" strokeWidth="5" strokeLinecap="round" />
-
-                      {/* Frame top edge highlight (rim light) */}
-                      <path d="M8 40 Q85 28 163 40" stroke="rgba(255,200,80,0.2)" strokeWidth="1.5" fill="none" />
-                      <path d="M217 40 Q294 28 372 40" stroke="rgba(255,200,80,0.2)" strokeWidth="1.5" fill="none" />
-
-                      <defs>
-                        <linearGradient id="hl-frame" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
-                          <stop stopColor="#4a2800" />
-                          <stop offset="0.5" stopColor="#2d1600" />
-                          <stop offset="1" stopColor="#1a0d00" />
-                        </linearGradient>
-                        <linearGradient id="hl-frame-stroke" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
-                          <stop stopColor="#4a2800" />
-                          <stop offset="1" stopColor="#2d1600" />
-                        </linearGradient>
-                        <linearGradient id="hl-lens" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
-                          <stop stopColor="#1a0c02" stopOpacity="0.96" />
-                          <stop offset="0.6" stopColor="#0a0804" stopOpacity="0.98" />
-                          <stop offset="1" stopColor="#050305" stopOpacity="1" />
-                        </linearGradient>
-                        <linearGradient id="hl-bridge" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
-                          <stop stopColor="#F5B041" />
-                          <stop offset="1" stopColor="#F57C00" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Top overlay: campaign text */}
-                <div className="absolute top-5 left-6 right-6 flex items-start justify-between pointer-events-none">
-                  <div>
-                    <p
-                      className="text-[10px] tracking-[0.4em] font-semibold"
-                      style={{ color: "rgba(245,181,65,0.7)" }}
-                    >
-                      COLEÇÃO VERÃO 2025
-                    </p>
-                  </div>
-                  <div
-                    className="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider"
-                    style={{
-                      background: "rgba(245,124,0,0.9)",
-                      color: "white",
+                      background: "rgba(0,0,0,0.42)",
+                      border: "1px solid rgba(200,176,138,0.22)",
+                      color: "rgba(217,195,165,0.92)",
+                      backdropFilter: "blur(8px)",
                     }}
                   >
+                    COLEÇÃO VERÃO 2025
+                  </p>
+                  <div
+                    className="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider"
+                    style={{ background: "#F57C00", color: "white", boxShadow: "0 2px 12px rgba(245,124,0,0.4)" }}
+                  >
                     NOVO
+                  </div>
+                </div>
+
+                {/* Location label — bottom */}
+                <div className="absolute bottom-5 left-5 right-5 z-10">
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand" style={{ boxShadow: "0 0 6px #F57C00" }} />
+                    <p className="text-white/80 text-xs font-semibold tracking-widest">RUA DAS PEDRAS · BÚZIOS, RJ</p>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
+/*
+ * photoBg simulates brand-kit product photography:
+ * warm sandy/amber center (sunlit surface) → dark vignette at edges.
+ * Matches the Astral Wood, Sunset, Ocean cards shown in the brand guide.
+ */
 const products = [
   {
     id: 1,
@@ -9,18 +15,14 @@ const products = [
     subtitle: "Madeira & Âmbar",
     price: "R$ 349,90",
     tag: "NOVO",
-    tagBg: "#8B5E1A",
+    tagBg: "#7A4010",
     colors: ["#8B4513", "#D2691E", "#1a1a1a", "#F5B041"],
-    /* Key light from top-left, warm wood tones */
-    photoBg: `
-      radial-gradient(ellipse at 22% 18%, rgba(255,210,130,0.14) 0%, transparent 45%),
-      radial-gradient(ellipse at 75% 85%, rgba(180,90,10,0.1) 0%, transparent 35%),
-      linear-gradient(160deg, #1e1208 0%, #130c05 55%, #080603 100%)
-    `,
+    imageSrc: "/product-wood.jpg",
+    photoBg: "",
     rimColor: "#C8853A",
-    lensLight: "rgba(255,200,100,0.1)",
-    frameStop1: "#5a3010",
-    frameStop2: "#2d1600",
+    lensLight: "rgba(255,210,120,0.14)",
+    frameStop1: "#6B3E1A",
+    frameStop2: "#3D1F0A",
   },
   {
     id: 2,
@@ -30,15 +32,12 @@ const products = [
     tag: "MAIS VENDIDO",
     tagBg: "#C05000",
     colors: ["#F57C00", "#8B0000", "#1a1a1a", "#8B4513"],
-    photoBg: `
-      radial-gradient(ellipse at 25% 20%, rgba(255,160,60,0.16) 0%, transparent 45%),
-      radial-gradient(ellipse at 70% 80%, rgba(200,50,0,0.1) 0%, transparent 35%),
-      linear-gradient(160deg, #220e00 0%, #170800 55%, #080404 100%)
-    `,
-    rimColor: "#E06000",
-    lensLight: "rgba(255,150,50,0.12)",
-    frameStop1: "#6a2800",
-    frameStop2: "#3d1000",
+    imageSrc: "/product-sunset.jpg",
+    photoBg: "",
+    rimColor: "#E07030",
+    lensLight: "rgba(255,160,60,0.14)",
+    frameStop1: "#8B3C10",
+    frameStop2: "#4A1F08",
   },
   {
     id: 3,
@@ -48,15 +47,12 @@ const products = [
     tag: "POLARIZADO",
     tagBg: "#1D2B53",
     colors: ["#1D2B53", "#2E6B8A", "#1a1a1a", "#4A90B8"],
-    photoBg: `
-      radial-gradient(ellipse at 25% 18%, rgba(100,180,255,0.1) 0%, transparent 45%),
-      radial-gradient(ellipse at 70% 80%, rgba(29,43,83,0.3) 0%, transparent 40%),
-      linear-gradient(160deg, #080f1e 0%, #050a14 55%, #030508 100%)
-    `,
-    rimColor: "#3A7AAA",
-    lensLight: "rgba(100,180,255,0.1)",
-    frameStop1: "#1a3055",
-    frameStop2: "#0a1828",
+    imageSrc: "/product-ocean.jpg",
+    photoBg: "",
+    rimColor: "#2E6B8A",
+    lensLight: "rgba(80,150,220,0.12)",
+    frameStop1: "#0A1838",
+    frameStop2: "#060C20",
   },
   {
     id: 4,
@@ -64,17 +60,17 @@ const products = [
     subtitle: "Ouro & Champanhe",
     price: "R$ 419,90",
     tag: "PREMIUM",
-    tagBg: "#8B6914",
+    tagBg: "#7A5010",
     colors: ["#B8860B", "#DAA520", "#1a1a1a", "#C8A028"],
+    imageSrc: "",
     photoBg: `
-      radial-gradient(ellipse at 22% 18%, rgba(255,220,100,0.15) 0%, transparent 45%),
-      radial-gradient(ellipse at 75% 82%, rgba(180,130,0,0.1) 0%, transparent 35%),
-      linear-gradient(160deg, #181200 0%, #0f0c00 55%, #080700 100%)
+      radial-gradient(ellipse at 50% 42%, rgba(212,172,60,0.65) 0%, rgba(160,115,15,0.40) 42%, rgba(22,16,3,0.97) 76%, #0a0806 100%),
+      linear-gradient(160deg, #14100a 0%, #0a0806 100%)
     `,
     rimColor: "#C8A020",
-    lensLight: "rgba(255,215,80,0.1)",
-    frameStop1: "#5a4400",
-    frameStop2: "#302400",
+    lensLight: "rgba(255,220,80,0.12)",
+    frameStop1: "#7A5C1A",
+    frameStop2: "#4A3810",
   },
   {
     id: 5,
@@ -82,17 +78,17 @@ const products = [
     subtitle: "Matte Black",
     price: "R$ 299,90",
     tag: "CLÁSSICO",
-    tagBg: "#333",
+    tagBg: "#2A2A2A",
     colors: ["#2a2a2a", "#444", "#1a1a1a"],
+    imageSrc: "",
     photoBg: `
-      radial-gradient(ellipse at 22% 18%, rgba(200,200,200,0.06) 0%, transparent 45%),
-      radial-gradient(ellipse at 75% 82%, rgba(80,80,80,0.06) 0%, transparent 35%),
-      linear-gradient(160deg, #141414 0%, #0d0d0d 55%, #070707 100%)
+      radial-gradient(ellipse at 50% 42%, rgba(70,70,70,0.38) 0%, rgba(40,40,40,0.22) 42%, rgba(10,10,10,0.97) 76%, #060606 100%),
+      linear-gradient(160deg, #111111 0%, #080808 100%)
     `,
-    rimColor: "#3a3a3a",
+    rimColor: "#303030",
     lensLight: "rgba(255,255,255,0.05)",
-    frameStop1: "#2e2e2e",
-    frameStop2: "#1a1a1a",
+    frameStop1: "#1C1C1C",
+    frameStop2: "#0C0C0C",
   },
   {
     id: 6,
@@ -100,17 +96,17 @@ const products = [
     subtitle: "Rosa & Quartzo",
     price: "R$ 339,90",
     tag: "FEMININO",
-    tagBg: "#8B2020",
+    tagBg: "#7A1515",
     colors: ["#C0392B", "#E74C3C", "#1a1a1a", "#F57C00"],
+    imageSrc: "",
     photoBg: `
-      radial-gradient(ellipse at 22% 18%, rgba(255,120,100,0.14) 0%, transparent 45%),
-      radial-gradient(ellipse at 75% 82%, rgba(180,30,20,0.1) 0%, transparent 35%),
-      linear-gradient(160deg, #200808 0%, #150505 55%, #080303 100%)
+      radial-gradient(ellipse at 50% 42%, rgba(200,80,60,0.58) 0%, rgba(150,45,30,0.38) 42%, rgba(22,5,4,0.97) 76%, #0a0404 100%),
+      linear-gradient(160deg, #180808 0%, #0a0404 100%)
     `,
-    rimColor: "#C03020",
-    lensLight: "rgba(255,100,80,0.1)",
-    frameStop1: "#5a1010",
-    frameStop2: "#300808",
+    rimColor: "#C04040",
+    lensLight: "rgba(255,100,80,0.12)",
+    frameStop1: "#6A1A1A",
+    frameStop2: "#3D0F0F",
   },
 ];
 
@@ -131,31 +127,85 @@ function PhotoProductCard({ product, index }: { product: typeof products[0]; ind
         border: "1px solid rgba(255,255,255,0.05)",
       }}
     >
-      {/* Product photo simulation */}
-      <div
-        className="relative overflow-hidden"
-        style={{
-          height: "240px",
-          background: product.photoBg,
-        }}
-      >
-        {/* Studio floor reflection */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
-          style={{
-            background: "linear-gradient(to top, rgba(0,0,0,0.4), transparent)",
-          }}
-        />
+      {/* Product photo */}
+      <div className="relative overflow-hidden" style={{ height: "240px", background: product.photoBg || "#0d0d0d" }}>
 
-        {/* Collection number — editorial detail */}
-        <div
-          className="absolute top-4 left-4 pointer-events-none"
-          style={{ color: "rgba(255,255,255,0.1)", fontSize: "52px", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.05em" }}
-        >
-          {String(index + 1).padStart(2, "0")}
-        </div>
+        {product.imageSrc ? (
+          /* Real product photography from brand kit */
+          <>
+            <Image
+              src={product.imageSrc}
+              alt={product.name}
+              fill
+              quality={90}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              style={{ objectFit: "cover", objectPosition: "center 45%" }}
+              priority={index < 3}
+            />
+            {/* Minimal bottom vignette — tag readability only */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.48) 0%, transparent 42%)" }}
+            />
+          </>
+        ) : (
+          /* CSS simulation for products without real photos */
+          <>
+            <div
+              className="absolute bottom-0 left-0 right-0 h-1/3 pointer-events-none"
+              style={{ background: "linear-gradient(to top, rgba(0,0,0,0.4), transparent)" }}
+            />
+            <div
+              className="absolute top-4 left-4 pointer-events-none"
+              style={{ color: "rgba(255,255,255,0.1)", fontSize: "52px", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.05em" }}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <svg
+                viewBox="0 0 340 150"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  width: "82%",
+                  marginTop: "20px",
+                  filter: `drop-shadow(0 12px 24px rgba(0,0,0,0.7)) drop-shadow(0 0 16px ${product.rimColor}44)`,
+                }}
+              >
+                <rect x="5" y="22" width="140" height="100" rx="16" fill={`url(#${gradId})`} />
+                <rect x="9" y="26" width="132" height="92" rx="13" fill={`url(#${lensId})`} />
+                <ellipse cx="42" cy="50" rx="28" ry="13" fill={product.lensLight} />
+                <line x1="16" y1="38" x2="100" y2="38" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+                <rect x="195" y="22" width="140" height="100" rx="16" fill={`url(#${gradId})`} />
+                <rect x="199" y="26" width="132" height="92" rx="13" fill={`url(#${lensId})`} />
+                <ellipse cx="232" cy="50" rx="28" ry="13" fill={product.lensLight} />
+                <path d="M145 72 Q170 60 195 72" stroke={`url(#${bridgeId})`} strokeWidth="4.5" strokeLinecap="round" fill="none" />
+                <path d="M5 72 L-14 76" stroke={`url(#${gradId})`} strokeWidth="4.5" strokeLinecap="round" />
+                <path d="M335 72 L354 76" stroke={`url(#${gradId})`} strokeWidth="4.5" strokeLinecap="round" />
+                <path d="M9 32 Q75 20 145 32" stroke={product.rimColor} strokeWidth="1.5" strokeOpacity="0.25" fill="none" />
+                <path d="M199 32 Q265 20 335 32" stroke={product.rimColor} strokeWidth="1.5" strokeOpacity="0.25" fill="none" />
+                <defs>
+                  <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+                    <stop stopColor={product.frameStop1} />
+                    <stop offset="0.6" stopColor={product.frameStop2} />
+                    <stop offset="1" stopColor={product.frameStop2} stopOpacity="0.8" />
+                  </linearGradient>
+                  <linearGradient id={lensId} x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+                    <stop stopColor="#0e0e0e" />
+                    <stop offset="0.7" stopColor="#080808" />
+                    <stop offset="1" stopColor="#030303" />
+                  </linearGradient>
+                  <linearGradient id={bridgeId} x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
+                    <stop stopColor="#F5B041" />
+                    <stop offset="1" stopColor="#F57C00" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </>
+        )}
 
-        {/* Heart button */}
+        {/* Heart button — always shown */}
         <button
           className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200"
           style={{
@@ -171,74 +221,12 @@ function PhotoProductCard({ product, index }: { product: typeof products[0]; ind
           </svg>
         </button>
 
-        {/* Tag */}
+        {/* Tag — always shown */}
         <div
           className="absolute bottom-4 left-4 text-white text-[10px] font-bold tracking-widest px-2.5 py-1 rounded z-10"
           style={{ background: product.tagBg }}
         >
           {product.tag}
-        </div>
-
-        {/* Product SVG — photographic lighting */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <svg
-            viewBox="0 0 340 150"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{
-              width: "82%",
-              marginTop: "20px",
-              filter: `drop-shadow(0 12px 24px rgba(0,0,0,0.7)) drop-shadow(0 0 16px ${product.rimColor}44)`,
-            }}
-          >
-            {/* Left lens frame */}
-            <rect x="5" y="22" width="140" height="100" rx="16" fill={`url(#${gradId})`} />
-            {/* Left lens glass */}
-            <rect x="9" y="26" width="132" height="92" rx="13" fill={`url(#${lensId})`} />
-            {/* Left lens highlight (key light) */}
-            <ellipse cx="42" cy="50" rx="28" ry="13" fill={product.lensLight} />
-            <line x1="16" y1="38" x2="100" y2="38" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
-
-            {/* Right lens frame */}
-            <rect x="195" y="22" width="140" height="100" rx="16" fill={`url(#${gradId})`} />
-            {/* Right lens glass */}
-            <rect x="199" y="26" width="132" height="92" rx="13" fill={`url(#${lensId})`} />
-            <ellipse cx="232" cy="50" rx="28" ry="13" fill={product.lensLight} />
-
-            {/* Bridge */}
-            <path
-              d="M145 72 Q170 60 195 72"
-              stroke={`url(#${bridgeId})`}
-              strokeWidth="4.5"
-              strokeLinecap="round"
-              fill="none"
-            />
-
-            {/* Temple arms with subtle end-tips */}
-            <path d="M5 72 L-14 76" stroke={`url(#${gradId})`} strokeWidth="4.5" strokeLinecap="round" />
-            <path d="M335 72 L354 76" stroke={`url(#${gradId})`} strokeWidth="4.5" strokeLinecap="round" />
-
-            {/* Rim light (back-lit top edge) */}
-            <path d="M9 32 Q75 20 145 32" stroke={product.rimColor} strokeWidth="1.5" strokeOpacity="0.25" fill="none" />
-            <path d="M199 32 Q265 20 335 32" stroke={product.rimColor} strokeWidth="1.5" strokeOpacity="0.25" fill="none" />
-
-            <defs>
-              <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
-                <stop stopColor={product.frameStop1} />
-                <stop offset="0.6" stopColor={product.frameStop2} />
-                <stop offset="1" stopColor={product.frameStop2} stopOpacity="0.8" />
-              </linearGradient>
-              <linearGradient id={lensId} x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
-                <stop stopColor="#0e0e0e" />
-                <stop offset="0.7" stopColor="#080808" />
-                <stop offset="1" stopColor="#030303" />
-              </linearGradient>
-              <linearGradient id={bridgeId} x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
-                <stop stopColor="#F5B041" />
-                <stop offset="1" stopColor="#F57C00" />
-              </linearGradient>
-            </defs>
-          </svg>
         </div>
       </div>
 

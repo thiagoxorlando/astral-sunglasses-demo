@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function BrandSection() {
   return (
     <section id="sobre" className="py-24 bg-void-card overflow-hidden">
@@ -7,28 +9,27 @@ export default function BrandSection() {
           <div className="relative order-2 lg:order-1">
             <div
               className="relative rounded-2xl overflow-hidden aspect-[4/3]"
-              style={{
-                background: "linear-gradient(135deg, #1a1005 0%, #0d0a06 50%, #080604 100%)",
-                border: "1px solid rgba(245, 124, 0, 0.15)",
-              }}
+              style={{ border: "1px solid rgba(200,176,138,0.15)" }}
             >
-              {/* Atmospheric glow */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at 30% 70%, rgba(245,124,0,0.15) 0%, transparent 60%)",
-                }}
+              {/* Real store photo — ASTRAL sign center */}
+              <Image
+                src="/store-hero.jpg"
+                alt="Astral Sunglasses — Loja Rua das Pedras, Búzios"
+                fill
+                quality={92}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                style={{ objectFit: "cover", objectPosition: "center 20%" }}
               />
 
-              {/* Grid texture */}
+              {/* Minimal overlay — logo/text on top must stay legible */}
               <div
-                className="absolute inset-0 opacity-[0.04]"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-                  backgroundSize: "40px 40px",
-                }}
+                className="absolute inset-0"
+                style={{ background: "rgba(0,0,0,0.38)" }}
+              />
+              {/* Bottom warm gradient just for the footer tag strip */}
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to top, rgba(6,4,2,0.65) 0%, transparent 48%)" }}
               />
 
               {/* Content */}
